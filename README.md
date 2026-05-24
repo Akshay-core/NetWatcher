@@ -45,7 +45,6 @@
 - [Attack Simulation Logic](#-attack-simulation-logic)
 - [Tech Stack Decisions](#-tech-stack--every-decision-explained)
 - [Folder Structure](#-folder-structure)
-- [Interview Questions](#-interview-questions-this-generates)
 - [Roadmap](#-roadmap)
 - [Developer](#-developer)
 
@@ -788,26 +787,6 @@ python tests/test_risk_engine.py
 ```
 
 Tests cover the risk engine in complete isolation — no Nmap, no SQLite, no file system, no Ollama. This is correct unit test design: test pure logic independently from I/O.
-
----
-
-## 💼 Interview Questions This Generates
-
-These are real questions you will get if you put NetWatcher on your resume:
-
-**Architecture:**
-- *"Why did you separate rules.py from risk_engine.py?"* → Rules are policy (data), engine is mechanism (logic). Adding a new vulnerability rule means one dict entry, zero code changes. Same pattern as Snort IDS rules, Sigma detection rules.
-- *"How would you scale this to scan 10,000 hosts?"* → `ThreadPoolExecutor` for parallel Nmap processes, stream results to SQLite as they arrive, run AI analysis only on HIGH/CRITICAL devices, async progress bar.
-- *"Why SQLite and not a proper database?"* → SQLite is appropriate for single-user local tooling. The `db.py` interface is identical to what you'd write for PostgreSQL — swap the connection string and it scales.
-
-**AI/ML:**
-- *"Why temperature=0 for the LLM?"* → Deterministic output for JSON parsing reliability. Any temperature > 0 introduces randomness that causes occasional preamble text breaking the JSON parser.
-- *"How would you improve AI accuracy?"* → RAG: embed a CVE database with FAISS or Chroma, retrieve top-3 most relevant CVEs per open port, inject as context before generation. Grounds output in real data rather than model weights.
-- *"What if the model hallucinates a fix recommendation?"* → The rule-based engine always runs first and generates verified recommendations. AI enriches the explanation but never replaces the deterministic rules. A hallucinated explanation doesn't change the underlying risk score.
-
-**Security:**
-- *"How is this different from just running Nmap?"* → Nmap gives raw data. NetWatcher gives scored, prioritized, explained, historically-tracked, actionable intelligence. The gap between data and insight is the entire value.
-- *"What would you add to make this production-ready?"* → CVE database integration via NVD API, authenticated scanning (SSH into devices for deeper checks), scheduled scans with diff alerting via email/Slack, network topology graph visualization.
 
 ---
 
