@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NetWatcher — Security Report</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+:root{--bg:#080b10;--bg2:#0d1117;--bg3:#161b24;--bg4:#1c2230;--border:#21293a;--text:#cdd6e0;--muted:#6e7f96;--accent:#4f9eff;--cr:#f85149;--hi:#e3b341;--me:#54aeff;--lo:#3fb950;--mono:'JetBrains Mono',monospace;--sans:'Outfit',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;min-height:100vh;}
+a{color:var(--accent);text-decoration:none;}
+
+/* ── Header */
+.hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;}
+.hdr-l{display:flex;align-items:center;gap:12px;}
+.logo{width:38px;height:38px;background:linear-gradient(135deg,#4f9eff,#1a5fc7);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.hdr h1{font-size:17px;font-weight:700;color:#fff;}
+.hdr-sub{font-size:11px;color:var(--muted);font-family:var(--mono);}
+.hdr-r{text-align:right;font-size:11px;color:var(--muted);font-family:var(--mono);line-height:1.8;}
+
+/* ── Layout */
+.wrap{max-width:1180px;margin:0 auto;padding:28px 36px;}
+.section-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.section-label::before{content:'';display:block;width:3px;height:13px;background:var(--accent);border-radius:2px;}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;}
+.mb{margin-bottom:20px;}
+
+/* ── AI Verdict Banner */
+.verdict{padding:22px 28px;border-radius:12px;margin-bottom:20px;border:1px solid;}
+.verdict.CRITICAL{background:rgba(248,81,73,.06);border-color:rgba(248,81,73,.25);}
+.verdict.HIGH    {background:rgba(227,179,65,.06);border-color:rgba(227,179,65,.25);}
+.verdict.MEDIUM  {background:rgba(84,174,255,.06);border-color:rgba(84,174,255,.25);}
+.verdict.LOW     {background:rgba(63,185,80,.06); border-color:rgba(63,185,80,.25);}
+.verdict-top{display:flex;align-items:center;gap:14px;margin-bottom:10px;}
+.verdict-score{font-family:var(--mono);font-size:40px;font-weight:700;line-height:1;}
+.verdict.CRITICAL .verdict-score{color:var(--cr);}
+.verdict.HIGH     .verdict-score{color:var(--hi);}
+.verdict.MEDIUM   .verdict-score{color:var(--me);}
+.verdict.LOW      .verdict-score{color:var(--lo);}
+.verdict-title{font-size:18px;font-weight:700;color:#fff;}
+.verdict-sub{font-size:13px;color:var(--muted);}
+.verdict-text{font-size:14px;color:var(--text);max-width:720px;line-height:1.7;}
+.ai-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(79,158,255,.12);border:1px solid rgba(79,158,255,.25);color:var(--accent);font-size:11px;padding:3px 10px;border-radius:6px;font-family:var(--mono);margin-top:10px;}
+.fallback-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(110,127,150,.1);border:1px solid var(--border);color:var(--muted);font-size:11px;padding:3px 10px;border-radius:6px;font-family:var(--mono);margin-top:10px;}
+
+/* ── Stats row */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+.stat{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px 20px;}
+.stat-n{font-family:var(--mono);font-size:32px;font-weight:700;line-height:1;}
+.stat-n.cr{color:var(--cr);}
+.stat-n.hi{color:var(--hi);}
+.stat-n.me{color:var(--me);}
+.stat-n.lo{color:var(--lo);}
+.stat-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:3px;}
+
+/* ── Charts row */
+.charts-row{display:grid;grid-template-columns:220px 1fr 1fr;gap:14px;margin-bottom:20px;}
+.chart-card{padding:18px;}
+.chart-title{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
+.chart-wrap{position:relative;height:170px;display:flex;align-items:center;justify-content:center;}
+
+/* ── Attack Flowchart */
+.flow-section{margin-bottom:20px;}
+.flow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.flow-card{padding:18px 20px;border-radius:12px;}
+.flow-card.CRITICAL{background:rgba(248,81,73,.06);border:1px solid rgba(248,81,73,.2);}
+.flow-card.HIGH    {background:rgba(227,179,65,.06);border:1px solid rgba(227,179,65,.2);}
+.flow-card.MEDIUM  {background:rgba(84,174,255,.06);border:1px solid rgba(84,174,255,.2);}
+.flow-card.LOW     {background:rgba(63,185,80,.06); border:1px solid rgba(63,185,80,.2);}
+.flow-port{font-family:var(--mono);font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:10px;}
+.flow-port.CRITICAL{background:rgba(248,81,73,.2);color:var(--cr);}
+.flow-port.HIGH    {background:rgba(227,179,65,.2);color:var(--hi);}
+.flow-port.MEDIUM  {background:rgba(84,174,255,.2);color:var(--me);}
+.flow-port.LOW     {background:rgba(63,185,80,.2); color:var(--lo);}
+.flow-steps{display:flex;flex-direction:column;gap:0;}
+.flow-step{display:flex;align-items:flex-start;gap:10px;padding:7px 0;}
+.flow-step:not(:last-child){border-bottom:1px solid var(--border);}
+.flow-icon{width:24px;height:24px;border-radius:6px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:1px;}
+.flow-step-text{font-size:12px;color:var(--text);}
+.flow-step-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.flow-arrow{text-align:center;color:var(--muted);font-size:10px;padding:2px 0;}
+
+/* ── AI Action Plan */
+.action-plan{margin-bottom:20px;}
+.action-steps{display:flex;flex-direction:column;gap:10px;}
+.action-step{display:flex;gap:16px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;align-items:flex-start;}
+.action-num{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:700;flex-shrink:0;}
+.action-num.URGENT  {background:rgba(248,81,73,.2);color:var(--cr);}
+.action-num.SOON    {background:rgba(227,179,65,.2);color:var(--hi);}
+.action-num.OPTIONAL{background:rgba(63,185,80,.2); color:var(--lo);}
+.action-body{}
+.action-what{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px;}
+.action-why{font-size:12px;color:var(--muted);}
+.action-meta{display:flex;gap:8px;margin-top:6px;}
+.action-badge{font-size:10px;font-family:var(--mono);padding:2px 8px;border-radius:4px;}
+.badge-URGENT  {background:rgba(248,81,73,.15);color:var(--cr);border:1px solid rgba(248,81,73,.2);}
+.badge-SOON    {background:rgba(227,179,65,.15);color:var(--hi);border:1px solid rgba(227,179,65,.2);}
+.badge-OPTIONAL{background:rgba(63,185,80,.15); color:var(--lo);border:1px solid rgba(63,185,80,.2);}
+.badge-time{background:var(--bg3);color:var(--muted);border:1px solid var(--border);font-size:10px;font-family:var(--mono);padding:2px 8px;border-radius:4px;}
+
+/* ── Device Cards */
+.devices-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;margin-bottom:20px;}
+.dcard{border-radius:12px;overflow:hidden;}
+.dcard-hdr{padding:14px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);}
+.dicon{width:34px;height:34px;border-radius:8px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.dinfo{flex:1;min-width:0;}
+.dip{font-family:var(--mono);font-size:13px;font-weight:600;color:#fff;}
+.dtype{font-size:11px;color:var(--muted);}
+.rlvl{font-family:var(--mono);font-size:10px;font-weight:700;padding:3px 9px;border-radius:5px;}
+.rlvl.CRITICAL{background:rgba(248,81,73,.15);color:var(--cr);border:1px solid rgba(248,81,73,.3);}
+.rlvl.HIGH    {background:rgba(227,179,65,.15);color:var(--hi);border:1px solid rgba(227,179,65,.3);}
+.rlvl.MEDIUM  {background:rgba(84,174,255,.15);color:var(--me);border:1px solid rgba(84,174,255,.3);}
+.rlvl.LOW     {background:rgba(63,185,80,.15); color:var(--lo);border:1px solid rgba(63,185,80,.3);}
+.dcard-body{padding:14px 18px;}
+.bar-wrap{margin-bottom:12px;}
+.bar-lbl{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px;}
+.bar-track{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:2px;}
+.fill-CRITICAL{background:var(--cr);}
+.fill-HIGH    {background:var(--hi);}
+.fill-MEDIUM  {background:var(--me);}
+.fill-LOW     {background:var(--lo);}
+.plain-risk{font-size:12px;color:var(--text);background:var(--bg3);border-radius:6px;padding:8px 12px;margin-bottom:10px;border-left:3px solid;}
+.plain-risk.CRITICAL{border-color:var(--cr);}
+.plain-risk.HIGH    {border-color:var(--hi);}
+.plain-risk.MEDIUM  {border-color:var(--me);}
+.plain-risk.LOW     {border-color:var(--lo);}
+.ports-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
+.ptag{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg3);border:1px solid var(--border);color:var(--text);}
+.ptag.CRITICAL{border-color:rgba(248,81,73,.4);color:var(--cr);}
+.ptag.HIGH    {border-color:rgba(227,179,65,.4);color:var(--hi);}
+.ptag.MEDIUM  {border-color:rgba(84,174,255,.4);color:var(--me);}
+.action-tip{font-size:11px;color:var(--accent);display:flex;gap:6px;align-items:flex-start;}
+.action-tip::before{content:'→';flex-shrink:0;}
+
+/* ── Good news */
+.good-news{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.2);border-radius:10px;padding:14px 20px;margin-bottom:20px;font-size:13px;color:var(--lo);display:flex;gap:10px;align-items:center;}
+
+/* ── Footer */
+.ftr{margin-top:40px;padding:20px 36px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.ftr-brand{font-size:11px;color:var(--muted);font-family:var(--mono);}
+.ftr-links{display:flex;gap:16px;}
+.ftr-links a{font-size:11px;color:var(--muted);font-family:var(--mono);transition:color .2s;}
+.ftr-links a:hover{color:var(--accent);}
+@media(max-width:768px){.charts-row{grid-template-columns:1fr;}.stats-row{grid-template-columns:repeat(2,1fr);}.wrap{padding:16px;}.hdr{padding:14px 16px;}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-l">
+    <div class="logo">🛡</div>
+    <div>
+      <h1>NetWatcher</h1>
+      <div class="hdr-sub">AI-Powered Network Security Scanner</div>
+    </div>
+  </div>
+  <div class="hdr-r">
+    <div>Target: {{ target }}</div>
+    <div>{{ generated }}</div>
+    <div>Scan #{{ scan_id }}</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+{% set lvl = summary.level %}
+
+<!-- ── AI Verdict Banner ──────────────────────────────────── -->
+<div class="verdict {{ lvl }}">
+  <div class="verdict-top">
+    <div class="verdict-score">{{ summary.overall_score }}</div>
+    <div>
+      <div class="verdict-title">
+        {% if lvl == 'CRITICAL' %}⚠ Critical Security Risk{% elif lvl == 'HIGH' %}⚡ High Security Risk{% elif lvl == 'MEDIUM' %}🔵 Medium Risk Level{% else %}✅ Network Looks Good{% endif %}
+      </div>
+      <div class="verdict-sub">Network Risk Score / 100 · {{ summary.total_devices }} devices scanned</div>
+    </div>
+  </div>
+  <div class="verdict-text">{{ ai.analysis.plain_summary }}</div>
+  {% if ai.ai_available %}
+  <div class="ai-badge">🤖 AI Analysis · {{ ai.model_used }}</div>
+  {% else %}
+  <div class="fallback-badge">📋 Rule-Based Analysis · AI offline (Ollama not running)</div>
+  {% endif %}
+</div>
+
+<!-- ── Stats ──────────────────────────────────────────────── -->
+<div class="stats-row">
+  <div class="stat"><div class="stat-n cr">{{ summary.critical }}</div><div class="stat-lbl">Critical</div></div>
+  <div class="stat"><div class="stat-n hi">{{ summary.high }}</div><div class="stat-lbl">High</div></div>
+  <div class="stat"><div class="stat-n me">{{ summary.medium }}</div><div class="stat-lbl">Medium</div></div>
+  <div class="stat"><div class="stat-n lo">{{ summary.low }}</div><div class="stat-lbl">Low Risk</div></div>
+</div>
+
+<!-- ── Charts Row ─────────────────────────────────────────── -->
+<div class="charts-row mb">
+  <!-- Donut -->
+  <div class="card chart-card">
+    <div class="chart-title">Risk Breakdown</div>
+    <div class="chart-wrap"><canvas id="donut" width="170" height="170"></canvas></div>
+  </div>
+  <!-- Bar chart: per device scores -->
+  <div class="card chart-card" style="grid-column:span 2;">
+    <div class="chart-title">Device Risk Scores</div>
+    <div class="chart-wrap" style="height:170px;"><canvas id="bars"></canvas></div>
+  </div>
+</div>
+
+<!-- ── Attack Simulation Flowcharts ──────────────────────── -->
+{% set critical_ports = [] %}
+{% for d in devices %}
+  {% for p in d.ports %}
+    {% if p.risk_tag in ('CRITICAL','HIGH') %}
+      {% set _ = critical_ports.append({'port': p.number, 'service': p.service, 'risk_tag': p.risk_tag, 'version': p.version, 'device_ip': d.ip}) %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% if critical_ports %}
+<div class="flow-section mb">
+  <div class="section-label">Attack Simulation — What Could Happen</div>
+  <div class="flow-grid">
+    {% for cp in critical_ports[:6] %}
+    <div class="flow-card {{ cp.risk_tag }}">
+      <span class="flow-port {{ cp.risk_tag }}">Port {{ cp.port }} · {{ cp.service | upper }}</span>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-icon">🔍</div>
+          <div><div class="flow-step-label">Step 1 · Discovery</div><div class="flow-step-text">Attacker scans the internet and finds port {{ cp.port }} open on {{ cp.device_ip }}</div></div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          <div class="flow-icon">
+            {% if cp.service in ('telnet','ftp') %}🔑
+            {% elif cp.service in ('microsoft-ds','smb') %}💣
+            {% elif cp.service in ('redis','mongodb','elasticsearch') %}📂
+            {% elif cp.service == 'ssh' %}🔐
+            {% else %}⚡{% endif %}
+          </div>
+          <div>
+            <div class="flow-step-label">Step 2 · Exploit</div>
+            <div class="flow-step-text">
+              {% if cp.service == 'telnet' %}Sends your username &amp; password in plain text — like a postcard anyone can read
+              {% elif cp.service == 'ftp' %}Intercepts login credentials transmitted without encryption
+              {% elif cp.service in ('microsoft-ds','smb') %}Uses EternalBlue/WannaCry exploit to run code without a password
+              {% elif cp.service == 'redis' %}Connects without a password and reads or deletes all stored data
+              {% elif cp.service == 'mongodb' %}Dumps the entire database — no login required on default install
+              {% elif cp.service == 'ssh' %}Runs automated password-guessing attacks (brute force)
+              {% elif cp.service == 'vnc' %}Takes full remote control of your screen and keyboard
+              {% elif cp.service == 'rdp' %}Exploits BlueKeep or brute-forces Remote Desktop login
+              {% else %}Probes for known vulnerabilities in {{ cp.service }} {{ cp.version }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+          <div class="flow-icon">🛡</div>
+          <div>
+            <div class="flow-step-label">Prevention</div>
+            <div class="flow-step-text">
+              {% if cp.service == 'telnet' %}Disable Telnet in router settings. Use SSH instead.
+              {% elif cp.service == 'ftp' %}Replace FTP with SFTP. Disable FTP in server settings.
+              {% elif cp.service in ('microsoft-ds','smb') %}Block port 445 in firewall. Apply all Windows updates.
+              {% elif cp.service == 'redis' %}Add <code style="font-family:var(--mono);font-size:10px;">requirepass yourpassword</code> in redis.conf
+              {% elif cp.service == 'mongodb' %}Enable auth: <code style="font-family:var(--mono);font-size:10px;">security.authorization: enabled</code>
+              {% elif cp.service == 'ssh' %}Disable password auth. Use SSH keys only. Change port.
+              {% elif cp.service in ('vnc','rdp') %}Use a VPN. Never expose directly to internet.
+              {% else %}Update {{ cp.service }} to latest version. Check vendor security advisories.
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<!-- ── AI Action Plan ─────────────────────────────────────── -->
+{% if ai.analysis.action_plan %}
+<div class="action-plan mb">
+  <div class="section-label">Your Fix Plan — Step by Step</div>
+  <div class="action-steps">
+    {% for step in ai.analysis.action_plan %}
+    <div class="action-step">
+      <div class="action-num {{ step.priority }}">{{ step.step }}</div>
+      <div class="action-body">
+        <div class="action-what">{{ step.what_to_do }}</div>
+        <div class="action-why">{{ step.why_it_matters }}</div>
+        <div class="action-meta">
+          <span class="action-badge badge-{{ step.priority }}">{{ step.priority }}</span>
+          <span class="badge-time">⏱ {{ step.time_estimate }}</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<!-- ── Good News ──────────────────────────────────────────── -->
+{% if ai.analysis.good_news %}
+<div class="good-news">✅ {{ ai.analysis.good_news }}</div>
+{% endif %}
+
+<!-- ── Device Cards ──────────────────────────────────────── -->
+<div class="section-label">Devices Found ({{ devices | length }})</div>
+<div class="devices-grid">
+{% for d in devices %}
+{% set rl = d.risk_level %}
+{% set ai_dev = namespace(found=none) %}
+{% for ad in ai.analysis.devices %}{% if ad.ip == d.ip %}{% set ai_dev.found = ad %}{% endif %}{% endfor %}
+<div class="dcard card">
+  <div class="dcard-hdr">
+    <div class="dicon">
+      {% if d.device_type=='router'%}🔌{% elif d.device_type=='windows-pc'%}🖥{% elif d.device_type=='linux-device'%}🐧{% elif d.device_type=='mobile'%}📱{% elif d.device_type=='server'%}🖧{% elif d.device_type=='ip-camera'%}📷{% elif d.device_type=='printer'%}🖨{% elif d.device_type=='iot-device'%}📡{% else %}❓{% endif %}
+    </div>
+    <div class="dinfo">
+      <div class="dip">{{ d.ip }}</div>
+      <div class="dtype">{{ ai_dev.found.nickname if ai_dev.found else d.device_type }} · {{ d.hostname }}</div>
+    </div>
+    <div class="rlvl {{ rl }}">{{ rl }}</div>
+  </div>
+  <div class="dcard-body">
+    <div class="bar-wrap">
+      <div class="bar-lbl"><span>Risk Score</span><span style="font-family:var(--mono);color:var(--text);">{{ d.risk_score }}/100</span></div>
+      <div class="bar-track"><div class="bar-fill fill-{{ rl }}" style="width:{{ d.risk_score }}%"></div></div>
+    </div>
+    {% if ai_dev.found and ai_dev.found.biggest_risk %}
+    <div class="plain-risk {{ rl }}">{{ ai_dev.found.biggest_risk }}</div>
+    {% elif d.issues %}
+    <div class="plain-risk {{ rl }}">{{ d.issues[0].text }}</div>
+    {% endif %}
+    {% if d.ports %}
+    <div class="ports-row">
+      {% for p in d.ports[:7] %}<span class="ptag {{ p.risk_tag }}">{{ p.number }}/{{ p.service }}</span>{% endfor %}
+      {% if d.ports|length > 7 %}<span class="ptag">+{{ d.ports|length-7 }}</span>{% endif %}
+    </div>
+    {% endif %}
+    {% if ai_dev.found and ai_dev.found.beginner_action %}
+    <div class="action-tip">{{ ai_dev.found.beginner_action }}</div>
+    {% elif d.recommendations %}
+    <div class="action-tip">{{ d.recommendations[0] }}</div>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+</div>
+
+</div><!-- /wrap -->
+
+<footer class="ftr">
+  <div class="ftr-brand">🛡 NetWatcher v1.0 · Built by {{ dev_name }} · Ethical use only</div>
+  <div class="ftr-links">
+    <a href="{{ dev_github }}" target="_blank">GitHub</a>
+    <a href="{{ dev_portfolio }}" target="_blank">Portfolio</a>
+    <a href="{{ dev_linkedin }}" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+// ── Chart.js setup ────────────────────────────────────────────────────────────
+const C = { cr:'#f85149', hi:'#e3b341', me:'#54aeff', lo:'#3fb950', dim:'#21293a', muted:'#6e7f96', text:'#cdd6e0' };
+Chart.defaults.color = C.muted;
+Chart.defaults.font.family = "'JetBrains Mono', monospace";
+Chart.defaults.font.size = 11;
+
+// Donut chart
+const dnCtx = document.getElementById('donut').getContext('2d');
+const dnData = [{{ summary.critical }}, {{ summary.high }}, {{ summary.medium }}, {{ summary.low }}];
+const dnTotal = dnData.reduce((a,b)=>a+b,0);
+new Chart(dnCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Critical','High','Medium','Low'],
+    datasets:[{ data: dnData.map(v=>v||0.001), backgroundColor:[C.cr,C.hi,C.me,C.lo], borderWidth:0, hoverOffset:6 }]
+  },
+  options:{
+    cutout:'70%', plugins:{
+      legend:{ position:'bottom', labels:{ padding:10, boxWidth:10, usePointStyle:true }},
+      tooltip:{ callbacks:{ label: ctx => ` ${ctx.label}: ${ctx.raw === 0.001 ? 0 : ctx.raw} devices` }}
+    },
+    animation:{ animateRotate:true, duration:800 }
+  }
+});
+
+// Bar chart: device risk scores
+const barCtx = document.getElementById('bars').getContext('2d');
+const devIPs    = [{% for d in devices %}"{{ d.ip }}"{% if not loop.last %},{% endif %}{% endfor %}];
+const devScores = [{% for d in devices %}{{ d.risk_score }}{% if not loop.last %},{% endif %}{% endfor %}];
+const devLevels = [{% for d in devices %}"{{ d.risk_level }}"{% if not loop.last %},{% endif %}{% endfor %}];
+const barColors = devLevels.map(l => l==='CRITICAL'?C.cr:l==='HIGH'?C.hi:l==='MEDIUM'?C.me:C.lo);
+
+new Chart(barCtx, {
+  type: 'bar',
+  data: {
+    labels: devIPs,
+    datasets:[{
+      label:'Risk Score',
+      data: devScores,
+      backgroundColor: barColors.map(c=>c+'33'),
+      borderColor: barColors,
+      borderWidth: 2,
+      borderRadius: 6,
+    }]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    scales:{
+      y:{ min:0, max:100, grid:{color:C.dim}, ticks:{stepSize:25} },
+      x:{ grid:{display:false}, ticks:{font:{size:10}} }
+    },
+    plugins:{ legend:{display:false}, tooltip:{ callbacks:{
+      label: ctx => ` Score: ${ctx.raw}/100 (${devLevels[ctx.dataIndex]})`
+    }}},
+    animation:{ duration:800 }
+  }
+});
+</script>
+</body>
+</html>

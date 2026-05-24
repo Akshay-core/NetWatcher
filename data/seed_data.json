@@ -1,0 +1,45 @@
+{
+  "_comment": "Mock CVE reference dataset. In production, pull from NVD API (https://nvd.nist.gov/vuln/data-feeds).",
+  "cve_hints": [
+    {
+      "port": 445,
+      "service": "microsoft-ds",
+      "cve": "CVE-2017-0144",
+      "name": "EternalBlue / WannaCry",
+      "severity": "CRITICAL",
+      "description": "SMBv1 remote code execution. Exploited globally by WannaCry ransomware in 2017."
+    },
+    {
+      "port": 3389,
+      "service": "ms-wbt-server",
+      "cve": "CVE-2019-0708",
+      "name": "BlueKeep",
+      "severity": "CRITICAL",
+      "description": "RDP pre-auth remote code execution on Windows 7/Server 2008."
+    },
+    {
+      "port": 6379,
+      "service": "redis",
+      "cve": "CVE-2022-0543",
+      "name": "Redis Lua RCE",
+      "severity": "CRITICAL",
+      "description": "Unauthenticated remote code execution via Lua sandbox escape in Redis."
+    },
+    {
+      "port": 27017,
+      "service": "mongodb",
+      "cve": "CVE-2013-4650",
+      "name": "MongoDB Auth Bypass",
+      "severity": "HIGH",
+      "description": "MongoDB 2.4.x allows authentication bypass in some configurations."
+    },
+    {
+      "port": 23,
+      "service": "telnet",
+      "cve": "N/A",
+      "name": "Cleartext Credentials",
+      "severity": "CRITICAL",
+      "description": "Telnet transmits all data unencrypted. Credentials are trivially interceptable."
+    }
+  ]
+}
