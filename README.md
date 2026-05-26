@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Akshay-core/netwatcher/main/assets/banner.png" alt="NetWatcher Banner" width="100%">
-
 # 🛡 NetWatcher
 ### AI-Powered Home Network Vulnerability Scanner
 
@@ -15,26 +13,91 @@
 [![SQLite](https://img.shields.io/badge/Storage-SQLite-003B57?style=for-the-badge)](https://sqlite.org)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
+<br>
+
 [![GitHub](https://img.shields.io/badge/GitHub-Akshay--core-181717?style=flat-square&logo=github)](https://github.com/Akshay-core)
-[![Portfolio](https://img.shields.io/badge/Portfolio-akshay.fruvvi.com-0077B5?style=flat-square)](https://akshay.fruvvi.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-akshay.fruvvi.com-0077B5?style=flat-square&logo=internet-explorer&logoColor=white)](https://akshay.fruvvi.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Akshay-0A66C2?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/akshay-tb-791bb4372)
+[![Instagram](https://img.shields.io/badge/Instagram-akshayyyy__2007-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://www.instagram.com/akshayyyy_2007)
 
 <br>
 
-> *"Most network scanners just print ports. NetWatcher thinks like a security analyst — it scores risk, simulates attacks, and explains everything in plain English a 14-year-old can understand."*
+> *"Most network scanners just print ports. NetWatcher thinks like a security analyst —*
+> *it scores risk, simulates attacks, and explains everything in plain English a 14-year-old can understand."*
 
-<br>
+</div>
 
 ---
 
+## 📸 Real Scan — Live Screenshots
+
+> These are actual scans run on a real home network. No fake data.
+
+<table>
+<tr>
+<td width="50%">
+
+**Step 1 — Launch & scan starts**
+
+<img src="https://raw.githubusercontent.com/Akshay-core/NetWatcher/main/Screenshot/1.jpeg" alt="NetWatcher launch and scan starting" width="100%">
+
+</td>
+<td width="50%">
+
+**Step 2 — Hosts discovered, risk scored**
+
+<img src="https://raw.githubusercontent.com/Akshay-core/NetWatcher/main/Screenshot/2.jpeg" alt="Hosts discovered with risk scores" width="100%">
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+**Step 3 — HTML report opens in browser**
+
+<img src="https://raw.githubusercontent.com/Akshay-core/NetWatcher/main/Screenshot/3.png" alt="HTML security dashboard report" width="100%">
+
+</td>
+<td width="50%">
+
+**Step 4 — Attack simulation flowcharts**
+
+<img src="https://raw.githubusercontent.com/Akshay-core/NetWatcher/main/Screenshot/4.png" alt="Attack simulation flowcharts" width="100%">
+
+</td>
+</tr>
+<tr>
+<td colspan="2">
+
+**Step 5 — Device cards with AI plain-English explanations**
+
+<img src="https://raw.githubusercontent.com/Akshay-core/NetWatcher/main/Screenshot/5.png" alt="Device cards with AI explanations and action plan" width="100%">
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🎬 Full Demo Video
+
+> Click to watch the complete scan-to-report walkthrough (real network, real output)
+
+<div align="center">
+
+[![NetWatcher Demo Video](https://raw.githubusercontent.com/Akshay-core/NetWatcher/main/Screenshot/3.png)](https://github.com/Akshay-core/NetWatcher/blob/main/screenrecod/Tutorial.mp4)
+
+▶ **[Watch Tutorial.mp4](https://github.com/Akshay-core/NetWatcher/blob/main/screenrecod/Tutorial.mp4)** — Full walkthrough: install → scan → report → fix plan
+
 </div>
+
+---
 
 ## 📖 Table of Contents
 
 - [What Is This?](#-what-is-this)
 - [Who Is This For?](#-who-is-this-for)
-- [Live Demo](#-live-demo)
-- [How It Works](#-how-it-works)
+- [How It Works](#️-how-it-works)
 - [Architecture](#-architecture)
 - [Feature Breakdown](#-feature-breakdown)
 - [AI Engine](#-ai-engine)
@@ -42,10 +105,12 @@
 - [Usage Guide](#-usage-guide)
 - [Report Walkthrough](#-report-walkthrough)
 - [Risk Scoring Model](#-risk-scoring-model)
-- [Attack Simulation Logic](#-attack-simulation-logic)
+- [Attack Simulation Logic](#️-attack-simulation-logic)
 - [Tech Stack Decisions](#-tech-stack--every-decision-explained)
 - [Folder Structure](#-folder-structure)
+- [Tests](#-tests)
 - [Roadmap](#-roadmap)
+- [Legal Notice](#️-legal--ethical-notice)
 - [Developer](#-developer)
 
 ---
@@ -59,19 +124,20 @@ You run one command. NetWatcher:
 1. Discovers every device on your network
 2. Identifies what each device is (router, PC, IoT device, camera…)
 3. Scans for open ports and dangerous services
-4. Scores each device 0–100 for risk
+4. Scores each device **0–100 for risk**
 5. Simulates how an attacker would exploit each vulnerability
-6. Uses a local AI model to write plain-English explanations
-7. Generates a beautiful visual HTML dashboard report — offline, private, no cloud
+6. Uses a **local AI model** to write plain-English explanations
+7. Generates a beautiful visual HTML dashboard — offline, private, no cloud
 
 ```
-Before NetWatcher:   "Port 23 open"          ← meaningless to most people
+Before NetWatcher:   "Port 23 open"
+
 After NetWatcher:    "Telnet is open on your router — this is like leaving your
-                      front door unlocked with the key taped to it. Disable it
-                      in router settings in under 5 minutes."
+                      front door unlocked with the key taped to it.
+                      Disable it in router settings in under 5 minutes."
 ```
 
-This is what separates a script from a product.
+**This is what separates a script from a product.**
 
 ---
 
@@ -82,63 +148,14 @@ This is what separates a script from a product.
 | 🎓 CS / Cybersecurity student | Portfolio project that demonstrates system design, security thinking, and AI integration at once |
 | 🏠 Home user | Understand what's exposed on your network without needing security knowledge |
 | 🔒 Security hobbyist | Lightweight Nessus alternative for home lab auditing |
-| 💼 Internship seeker | Shows recruiters: pipeline architecture, AI integration, product thinking, and security domain knowledge |
+| 💼 Internship seeker | Shows recruiters: pipeline architecture, AI integration, product thinking, security domain knowledge |
 | 🧑‍💻 Developer | Learn how real security tools are structured — layers, rules engines, typed data models |
-
----
-
-## 🎬 Live Demo
-
-```
-$ python netwatcher.py scan --local --open
-
-╭──────────────────────────────────────────────────╮
-│  🛡  NetWatcher  v1.0.0                          │
-│  AI-Powered Network Vulnerability Scanner        │
-│  Developer : Akshay  ·  akshay.fruvvi.com        │
-╰──────────────────────────────────────────────────╯
-
-Auto-detected local subnet: 192.168.1.0/24
-
-Target: 192.168.1.0/24
-⠸ Discovering hosts…
-⠸ Fingerprinting devices…
-⠸ Running risk analysis…
-⠸ Running AI analysis…  (mistral:7b-instruct-q4_K_M)
-
-┌─────────────────┬──────────────────┬────────────┬───────┬────────────┬──────────┐
-│ IP              │ Hostname         │ Type       │ Ports │ Risk Score │ Level    │
-├─────────────────┼──────────────────┼────────────┼───────┼────────────┼──────────┤
-│ 192.168.1.1     │ RTK_GW.bbrouter  │ router     │ 4     │  87/100    │ CRITICAL │
-│ 192.168.1.3     │ AKSHAY.bbrouter  │ windows-pc │ 3     │  75/100    │ CRITICAL │
-│ 192.168.1.130   │ esp32-iot        │ iot-device │ 2     │  55/100    │ HIGH     │
-└─────────────────┴──────────────────┴────────────┴───────┴────────────┴──────────┘
-
-╭──────────────────────────────────────────────────────────────╮
-│  NETWORK SECURITY SCORE: 72/100  HIGH RISK                   │
-│  Devices: 3  Critical: 2  High: 1  Medium: 0  Low: 0        │
-╰──────────────────────────────────────────────────────────────╯
-
-✓ Report saved: reports/exports/netwatcher_report_20240115_143022.html
-  Opening in browser…
-```
-
-**The HTML report includes:**
-- 📊 Risk breakdown donut chart
-- 📈 Per-device risk score bar chart  
-- 🔴 Color-coded device cards with plain-English AI explanations
-- ⚔ Attack simulation flowcharts per vulnerability
-- ✅ Step-by-step fix plan with time estimates
 
 ---
 
 ## ⚙️ How It Works
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         NETWATCHER PIPELINE                                 │
-└─────────────────────────────────────────────────────────────────────────────┘
-
   You type:  python netwatcher.py scan --local
                           │
                           ▼
@@ -152,7 +169,7 @@ Target: 192.168.1.0/24
          │   • Lists all open ports   │
          │   • Reads service banners  │
          └─────────────┬──────────────┘
-                       │  List of Device objects
+                       │  List[Device]
                        ▼
          ┌────────────────────────────┐
          │   2. DEVICE FINGERPRINTING │
@@ -160,10 +177,9 @@ Target: 192.168.1.0/24
          │                            │
          │   • MAC → vendor lookup    │
          │   • Classifies device type │
-         │     (router/PC/IoT/camera) │
-         │   • Enriches OS context    │
+         │   • router / PC / IoT...   │
          └─────────────┬──────────────┘
-                       │  Enriched Device objects
+                       │  Enriched List[Device]
                        ▼
          ┌────────────────────────────┐
          │   3. RISK ANALYSIS         │
@@ -171,13 +187,11 @@ Target: 192.168.1.0/24
          │   engine/rules.py          │
          │                            │
          │   • Port → severity lookup │
-         │   • Service → rule match   │
          │   • Score = Σ weights      │
          │     + device modifier      │
-         │   • Tags each port         │
-         │   • Builds issue list      │
+         │   • Tags every port        │
          └─────────────┬──────────────┘
-                       │  Scored Device objects (0–100)
+                       │  Scored List[Device] (0–100)
                        ▼
          ┌────────────────────────────┐
          │   4. AI ANALYSIS           │
@@ -185,22 +199,19 @@ Target: 192.168.1.0/24
          │   ai/prompts.py            │
          │   ai/ollama_client.py      │
          │                            │
-         │   • Compresses scan data   │
          │   • Builds surgical prompt │
-         │   • Calls Ollama API       │
-         │     (local, private, free) │
+         │   • Calls Ollama locally   │
          │   • Parses JSON response   │
          │   • Falls back gracefully  │
          └─────────────┬──────────────┘
-                       │  AI analysis dict (or fallback)
+                       │  AI analysis dict
                        ▼
          ┌────────────────────────────┐
          │   5. PERSISTENCE           │
-         │   data/db.py (SQLite)      │
+         │   data/db.py  (SQLite)     │
          │                            │
          │   • Saves scan session     │
          │   • Stores all devices     │
-         │   • Enables history view   │
          │   • Tracks risk over time  │
          └─────────────┬──────────────┘
                        │  scan_id
@@ -208,18 +219,16 @@ Target: 192.168.1.0/24
          ┌────────────────────────────┐
          │   6. REPORT GENERATION     │
          │   reports/generator.py     │
-         │   reports/templates/*.html │
          │                            │
          │   • Jinja2 renders HTML    │
          │   • Chart.js bar + donut   │
          │   • Attack flowcharts      │
-         │   • Action plan            │
-         │   • Single file output     │
+         │   • AI action plan         │
          └─────────────┬──────────────┘
                        │
                        ▼
-            📄 netwatcher_report.html
-              (self-contained, offline)
+            📄  netwatcher_report.html
+              (single file, fully offline)
 ```
 
 ---
@@ -260,9 +269,9 @@ Every module has **one job** and knows nothing about the layers above or below i
 └──────────────┴──────────────────────────────────────┘
 ```
 
-**Why this matters:** You can swap Nmap for a different scanner by changing only `scanner.py`. You can swap SQLite for PostgreSQL by changing only `db.py`. You can swap Ollama for OpenAI by changing only `ollama_client.py`. Nothing else needs to touch.
+**Why this matters:** You can swap Nmap for a different scanner by changing only `scanner.py`. Swap SQLite for PostgreSQL by changing only `db.py`. Swap Ollama for OpenAI by changing only `ollama_client.py`. Nothing else touches.
 
-### Data Flow (typed contract between layers)
+### Data Flow — Typed Contract Between Layers
 
 ```
 Nmap XML output
@@ -285,7 +294,7 @@ Nmap XML output
     recommendations=["Disable Telnet immediately..."]
   )
       │
-      │  .to_dict() for Jinja2/SQLite:
+      │  .to_dict() for Jinja2 / SQLite:
       ▼
   Plain dict → template renders → HTML report
 ```
@@ -295,50 +304,48 @@ Nmap XML output
 ## ✨ Feature Breakdown
 
 ### 🧠 Risk Scoring Engine
-Not just "port open." Every port is weighted by real-world severity. A Telnet port (23) scores 30 points. SSH (22) scores 10. Device type adds a modifier — routers get +15 because they're the highest-value target on any home network. Final score is 0–100 with four thresholds.
+Not just "port open." Every port is weighted by real-world severity. Telnet (port 23) = 30 points. SSH (port 22) = 10. Device type adds a modifier — routers get +15 because they're the highest-value target on any home network.
 
 ### 🔍 Device Fingerprinting
-Uses MAC OUI (the first 3 bytes of a MAC address, which identify the manufacturer) combined with Nmap OS detection to classify every device. Your ESP32 IoT device, Raspberry Pi, HP printer, and Windows laptop each get correctly identified — not labeled "unknown host."
+Uses MAC OUI (the first 3 bytes of a MAC address identifying the manufacturer) combined with Nmap OS detection to classify every device. Your ESP32 IoT, Raspberry Pi, HP printer, and Windows laptop each get correctly identified.
 
 ### 📋 Rule-Based Vulnerability Engine
-`engine/rules.py` is pure data — a dictionary of port numbers and service names mapped to severity, explanation, and fix. No logic lives there. This is intentional: rules are policy, the engine is mechanism. Adding a new vulnerability means one new dict entry, nothing else.
+`engine/rules.py` is pure data — a dictionary of port numbers mapped to severity, explanation, and fix. No logic lives there. Rules are policy; the engine is mechanism. Adding a new vulnerability = one dict entry, nothing else.
 
 ### 🤖 AI Plain-English Analysis
-When Ollama is running, a local Mistral 7B model reads the scan results and writes explanations a non-technical person can act on. No jargon without immediate explanation. Uses everyday analogies. Falls back gracefully if AI is offline.
+When Ollama is running, a local Mistral 7B model reads the scan and writes explanations a non-technical person can act on. Falls back gracefully if AI is offline — report still generates.
 
 ### ⚔ Attack Simulation Flowcharts
-For every CRITICAL or HIGH port, the HTML report shows a 3-step attack simulation: Discovery → Exploit → Prevention. Not theoretical — based on real attack patterns (EternalBlue, BlueKeep, Redis unauthenticated RCE, Telnet interception).
+For every CRITICAL or HIGH port, the report shows a 3-step simulation: **Discovery → Exploit → Prevention.** Based on real attack patterns — EternalBlue, BlueKeep, Redis RCE, Telnet interception.
 
 ### 🗃 Scan History Timeline
-Every scan is saved to a local SQLite database. Run `netwatcher history` to see all previous scans with risk scores. Run the same scan weekly — track whether your network is getting more or less secure over time.
+Every scan saved to local SQLite. Run `netwatcher history` to see all previous scans with scores. Track whether your network is getting more or less secure week over week.
 
 ### 📊 Visual HTML Dashboard
-Single self-contained HTML file. No server needed. Open it in any browser, share it with anyone. Includes Chart.js donut and bar charts, color-coded device cards, attack flowcharts, and a step-by-step action plan.
+Single self-contained HTML file. No server. Open in any browser. Chart.js donut + bar charts, color-coded device cards, attack flowcharts, step-by-step action plan.
 
 ---
 
 ## 🤖 AI Engine
 
-### Why a local model, not ChatGPT/OpenAI?
+### Why local model, not ChatGPT?
 
-Your network scan contains sensitive data — IP addresses, open ports, device names, MAC addresses. Sending that to a cloud API is a privacy and security anti-pattern for a security tool. NetWatcher runs everything locally.
+Your network scan contains sensitive data — IPs, open ports, device names, MAC addresses. Sending that to a cloud API is a privacy anti-pattern for a security tool.
 
 ```
-Cloud API path:                   NetWatcher path:
+Cloud API:                        NetWatcher:
   Your scan data                    Your scan data
        │                                  │
        ▼                                  ▼
-  OpenAI servers  ← PRIVACY RISK    Ollama (localhost:11434)
-  (leaves device)                    (never leaves your machine)
+  OpenAI servers ← PRIVACY RISK    Ollama (localhost:11434)
+  (leaves device)                    (never leaves machine)
        │                                  │
-       ▼                                  ▼
-  Analysis                          Analysis
   ❌ Costs money                    ✅ Free
   ❌ Needs internet                 ✅ Fully offline
   ❌ Data exposed                   ✅ Private
 ```
 
-### Model Selection — Why Mistral 7B Q4_K_M
+### Model Selection — RTX 3050 Optimized
 
 ```
 ┌─────────────────────────┬──────────┬──────────────┬────────────────┐
@@ -351,79 +358,47 @@ Cloud API path:                   NetWatcher path:
 └─────────────────────────┴──────────┴──────────────┴────────────────┘
 ```
 
-Mistral 7B Q4_K_M is chosen because:
-- **Fits 4GB VRAM** — RTX 3050 compatible, 35 GPU layers, 1 CPU layer
-- **Instruction-tuned** — follows the JSON schema contract reliably
-- **Sliding window attention** — handles long scan data without truncation
-- **Q4_K_M quantization** — ~1% accuracy loss vs full precision, 3.5x smaller
+**Mistral 7B Q4_K_M** chosen because: fits 4GB VRAM exactly (35 GPU layers), instruction-tuned for JSON schema compliance, sliding window attention handles long scan data, ~1% accuracy loss vs full precision.
 
-### Surgical Prompt Engineering
-
-The prompt in `ai/prompts.py` uses 5 techniques that each have measurable effects:
+### Surgical Prompt Engineering (5 techniques)
 
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│                     PROMPT ARCHITECTURE                          │
-├───────────────────────┬──────────────────────────────────────────┤
+┌───────────────────────┬──────────────────────────────────────────┐
 │ TECHNIQUE             │ WHAT IT DOES                             │
 ├───────────────────────┼──────────────────────────────────────────┤
 │ 1. Role Anchoring     │ "You are a senior security analyst       │
 │                       │  writing for non-technical users"        │
-│                       │ → Model draws from security domain       │
-│                       │   training, adjusts reading level        │
+│                       │ → Draws from security training data      │
 ├───────────────────────┼──────────────────────────────────────────┤
-│ 2. Strict JSON Schema │ Output format defined explicitly in      │
-│                       │  system prompt with every key named      │
-│                       │ → Model "knows" the shape before         │
-│                       │   seeing any input data                  │
+│ 2. Strict JSON Schema │ Output format defined in system prompt   │
+│                       │ → Model knows the shape before input     │
 ├───────────────────────┼──────────────────────────────────────────┤
-│ 3. Few-Shot Example   │ One worked example shows exact           │
-│                       │  tone ("like a postcard anyone           │
-│                       │  can read") and structure               │
+│ 3. Few-Shot Example   │ One worked example shows exact tone      │
 │                       │ → Teaches style, not just format         │
 ├───────────────────────┼──────────────────────────────────────────┤
-│ 4. Negative Rules     │ "Do NOT add markdown.                    │
-│                       │  Do NOT explain outside the JSON."       │
-│                       │ → Prevents the #1 failure mode:         │
-│                       │   preamble text breaking JSON parse      │
+│ 4. Negative Rules     │ "Do NOT add markdown."                   │
+│                       │ → Prevents #1 failure: preamble text     │
 ├───────────────────────┼──────────────────────────────────────────┤
 │ 5. Context Last       │ Scan data injected at END of prompt      │
-│                       │ → Transformer attention is               │
-│                       │   recency-biased; most recent           │
-│                       │   content gets highest attention         │
+│                       │ → Recency bias = highest attention       │
 └───────────────────────┴──────────────────────────────────────────┘
 
-temperature = 0.0  →  Deterministic output. No creativity needed.
-                       Reliability > variety for JSON parsing.
+temperature = 0.0  →  Deterministic JSON. Reliability > creativity.
 ```
 
 ### Graceful Fallback
 
 ```
-  Is Ollama running?
-         │
-    No ──┼──► Rule-based fallback analysis
-         │    (same output shape, auto-generated from rules)
-        Yes
-         │
-  Model installed?
-         │
-    No ──┼──► Rule-based fallback analysis
-         │
-        Yes
-         │
-  JSON parseable?
-         │
-    No ──┼──► Rule-based fallback analysis (3 recovery attempts first)
-         │
-        Yes
-         │
-         ▼
-    AI analysis in report
-    (badge shows model name)
+  Is Ollama running?  →  No  →  Rule-based fallback (identical output shape)
+         ↓ Yes
+  Model installed?    →  No  →  Rule-based fallback
+         ↓ Yes
+  JSON parseable?     →  No  →  3 recovery attempts → Rule-based fallback
+         ↓ Yes
+  AI analysis in report  (badge shows model name)
 ```
 
-The report always generates. The fallback produces identical structure. The template never crashes because AI is optional.
+The report **always generates.** The template never crashes because AI is optional.
 
 ---
 
@@ -432,12 +407,12 @@ The report always generates. The fallback produces identical structure. The temp
 ### Windows
 
 ```powershell
-# 1. Install Python 3.10+ from https://python.org/downloads (check "Add to PATH")
-# 2. Install Nmap from https://nmap.org/download.html
-# 3. Open PowerShell and run:
+# Prerequisites:
+# 1. Python 3.10+ → https://python.org/downloads  (check "Add to PATH")
+# 2. Nmap        → https://nmap.org/download.html
 
-git clone https://github.com/Akshay-core/netwatcher
-cd netwatcher
+git clone https://github.com/Akshay-core/NetWatcher
+cd NetWatcher
 pip install -r requirements.txt
 python netwatcher.py check
 python netwatcher.py scan --local --open
@@ -446,139 +421,99 @@ python netwatcher.py scan --local --open
 ### macOS
 
 ```bash
-# One-liner prerequisites (requires Homebrew: brew.sh)
 brew install python nmap git && \
-git clone https://github.com/Akshay-core/netwatcher && \
-cd netwatcher && \
+git clone https://github.com/Akshay-core/NetWatcher && \
+cd NetWatcher && \
 pip3 install -r requirements.txt && \
 python3 netwatcher.py scan --local --open
 ```
 
-### Linux (Ubuntu/Debian)
+### Linux (Ubuntu / Debian)
 
 ```bash
 sudo apt update && sudo apt install -y python3 python3-pip nmap git && \
-git clone https://github.com/Akshay-core/netwatcher && \
-cd netwatcher && \
+git clone https://github.com/Akshay-core/NetWatcher && \
+cd NetWatcher && \
 pip3 install -r requirements.txt && \
 python3 netwatcher.py scan --local --open
 ```
 
-### Enable AI Analysis (optional, one time)
+### Enable AI (optional — one time setup)
 
 ```bash
-# Linux/Mac (auto-install):
+# Linux / Mac:
 bash scripts/setup_ai.sh
 
-# Windows — download installer from:
-# https://ollama.ai/download
-# Then run:
+# Windows — download from https://ollama.ai/download then:
 ollama pull mistral:7b-instruct-q4_K_M
 
-# Verify AI is ready:
+# Verify everything is ready:
 python netwatcher.py check
 ```
 
-> **No Ollama?** The tool works fully without AI. Reports still generate with rule-based analysis. AI adds plain-English explanations on top.
+> **No Ollama?** Tool works fully without AI. Rule-based analysis still runs and generates the complete report. AI adds the plain-English layer on top.
 
 ---
 
 ## 📋 Usage Guide
 
-### Core Commands
-
 ```bash
-# Scan your local network (auto-detects subnet)
+# Scan local network (auto-detects subnet)
 python netwatcher.py scan --local
 
-# Scan and open the HTML report immediately in browser
+# Scan and auto-open HTML report in browser
 python netwatcher.py scan --local --open
 
-# Scan a specific IP range
+# Scan a specific range
 python netwatcher.py scan --target 192.168.1.0/24
 
 # Scan a single device
 python netwatcher.py scan --target 192.168.1.1
 
-# Scan without generating HTML report (terminal only)
+# Terminal only, no HTML report
 python netwatcher.py scan --local --no-report
 
-# Enable verbose debug logging
+# Verbose debug output
 python netwatcher.py scan --local --verbose
-```
 
-### History & Reports
-
-```bash
-# View all past scans with risk scores
+# View scan history
 python netwatcher.py history
-
-# View last 5 scans only
 python netwatcher.py history --limit 5
 
-# Open the most recent HTML report in browser
+# Open last report
 python netwatcher.py report
 
-# Verify environment (nmap, python packages, ollama)
+# Preflight check
 python netwatcher.py check
-```
-
-### Command Reference
-
-```
-netwatcher scan     Run a network scan
-  --local    -l     Auto-detect and scan local subnet
-  --target   -t     Specific IP or CIDR range
-  --open            Open HTML report in browser after scan
-  --no-report       Skip HTML report generation
-  --verbose  -v     Show debug logs
-
-netwatcher report   Open most recent report in browser
-netwatcher history  Show scan history from database
-netwatcher check    Preflight check (nmap, deps, ollama)
 ```
 
 ---
 
 ## 📊 Report Walkthrough
 
-The HTML report is divided into 6 sections:
-
 ```
 ┌──────────────────────────────────────────────────────────────────┐
-│  SECTION 1: VERDICT BANNER                                       │
-│  ─────────────────────────────────────────────────────────────── │
-│  Large risk score (0–100), color-coded banner (red/yellow/       │
-│  blue/green), AI plain-English summary, model badge             │
+│  SECTION 1 — VERDICT BANNER                                      │
+│  Risk score 0–100, color-coded (red/yellow/blue/green),          │
+│  AI plain-English summary, model badge                           │
 ├──────────────────────────────────────────────────────────────────┤
-│  SECTION 2: STATS ROW                                            │
-│  ─────────────────────────────────────────────────────────────── │
-│  Four counters: Critical / High / Medium / Low device counts    │
+│  SECTION 2 — STATS ROW                                           │
+│  Four counters: Critical / High / Medium / Low devices           │
 ├──────────────────────────────────────────────────────────────────┤
-│  SECTION 3: CHARTS                                               │
-│  ─────────────────────────────────────────────────────────────── │
-│  Left:  Donut chart — risk level breakdown                       │
-│  Right: Bar chart — individual device risk scores               │
+│  SECTION 3 — CHARTS                                              │
+│  Donut: risk level breakdown                                     │
+│  Bar:   per-device risk scores                                   │
 ├──────────────────────────────────────────────────────────────────┤
-│  SECTION 4: ATTACK SIMULATION FLOWCHARTS                         │
-│  ─────────────────────────────────────────────────────────────── │
-│  One card per CRITICAL/HIGH port found:                          │
-│    Step 1: Discovery  → how attacker finds this                  │
-│    Step 2: Exploit    → what they do with it (plain English)     │
-│    Step 3: Prevention → exact fix instruction                    │
+│  SECTION 4 — ATTACK SIMULATION FLOWCHARTS                        │
+│  One card per CRITICAL/HIGH port:                                │
+│    Discovery → Exploit → Prevention  (plain English)             │
 ├──────────────────────────────────────────────────────────────────┤
-│  SECTION 5: FIX PLAN                                             │
-│  ─────────────────────────────────────────────────────────────── │
-│  Numbered steps from AI analysis, priority-tagged               │
-│  (URGENT / SOON / OPTIONAL), with time estimates                │
+│  SECTION 5 — FIX PLAN                                            │
+│  Numbered steps, URGENT/SOON/OPTIONAL badges, time estimates     │
 ├──────────────────────────────────────────────────────────────────┤
-│  SECTION 6: DEVICE CARDS                                         │
-│  ─────────────────────────────────────────────────────────────── │
-│  One card per device:                                            │
-│    • Risk score bar, level badge, device icon                    │
-│    • AI plain-English biggest risk explanation                   │
-│    • Open port tags (color-coded by severity)                    │
-│    • One-line beginner action                                    │
+│  SECTION 6 — DEVICE CARDS                                        │
+│  Risk bar, level badge, device icon, AI explanation,             │
+│  port tags (color by severity), beginner action                  │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
@@ -586,107 +521,86 @@ The HTML report is divided into 6 sections:
 
 ## 🔬 Risk Scoring Model
 
-### How the Score is Calculated
-
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│  score = min( Σ(port_weights) capped at 70  +  device_modifier, 100 )
-└─────────────────────────────────────────────────────────────────┘
+score = min( Σ(port_weights) capped at 70  +  device_modifier,  100 )
 
-Example: Router with Telnet + SMB open
-
-  Port 23  (telnet)       → CRITICAL  → +30
-  Port 445 (smb)          → CRITICAL  → +30
-  ─────────────────────────────────────────
-  Base score              =  60  (capped at 70, so stays 60)
-  Device modifier (router)= +15
-  ─────────────────────────────────────────
-  Final score             =  75  → CRITICAL
+Example — Router with Telnet + SMB open:
+  Port 23  (telnet) → CRITICAL → +30
+  Port 445 (smb)    → CRITICAL → +30
+  Base = min(60, 70) = 60
+  Modifier (router) = +15
+  Final score       = 75 → CRITICAL
 ```
 
 ### Port Severity Weights
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│ CRITICAL (+30)     HIGH (+20)       MEDIUM (+10)  LOW (+5)   │
-│                                                              │
-│ 23  Telnet         21  FTP          22  SSH        80  HTTP  │
-│ 445 SMB            25  SMTP         53  DNS        443 HTTPS │
-│ 6379 Redis         135 Win RPC      110 POP3       8080      │
-│ 27017 MongoDB      139 NetBIOS      143 IMAP                 │
-│ 9200 Elasticsearch 3306 MySQL                               │
-│                    3389 RDP                                  │
-│                    5900 VNC                                  │
-└──────────────────────────────────────────────────────────────┘
-```
+| CRITICAL (+30) | HIGH (+20) | MEDIUM (+10) | LOW (+5) |
+|---|---|---|---|
+| 23 Telnet | 21 FTP | 22 SSH | 80 HTTP |
+| 445 SMB | 25 SMTP | 53 DNS | 443 HTTPS |
+| 6379 Redis | 135 Win RPC | 110 POP3 | 8080 |
+| 27017 MongoDB | 139 NetBIOS | 143 IMAP | |
+| 9200 Elasticsearch | 3306 MySQL | | |
+| | 3389 RDP | | |
+| | 5900 VNC | | |
 
-### Device Type Modifiers
+### Device Modifiers
 
-```
-router         +15   (highest-value target on home networks)
-server         +10   (multiple services, persistence target)
-ip-camera      +10   (often unpatched, used in botnets)
-printer        +5    (often forgotten, long-lived on network)
-windows-pc     +5    (SMB, RDP attack surface)
-linux-device   +3
-mobile          0
-unknown        +5    (assume worst when can't identify)
-```
+| Device | Modifier | Reason |
+|---|---|---|
+| router | +15 | Highest-value target on any home network |
+| server | +10 | Multiple services, persistence target |
+| ip-camera | +10 | Often unpatched, used in botnets |
+| printer | +5 | Forgotten, long-lived, rarely patched |
+| windows-pc | +5 | SMB + RDP attack surface |
+| linux-device | +3 | |
+| mobile | 0 | |
+| unknown | +5 | Assume worst when can't identify |
 
-### Score to Risk Level
+### Score → Risk Level
 
 ```
-75 – 100  →  🔴 CRITICAL   (immediate action required)
-50 – 74   →  🟡 HIGH       (action within days)
-25 – 49   →  🔵 MEDIUM     (address when possible)
- 0 – 24   →  🟢 LOW        (monitor, minor improvements)
+75–100  →  🔴 CRITICAL   immediate action required
+50–74   →  🟡 HIGH       action within days
+25–49   →  🔵 MEDIUM     address when possible
+ 0–24   →  🟢 LOW        monitor, minor improvements
 ```
 
 ---
 
-## ⚔ Attack Simulation Logic
+## ⚔️ Attack Simulation Logic
 
-Each attack flowchart in the report is based on real attack patterns, not made-up scenarios:
+Each flowchart in the report is based on real attack patterns:
 
 ```
 PORT 23 — TELNET
-┌─────────────────────────────────────────────────────────────────┐
-│ Discovery:  Attacker scans the internet for port 23             │
-│             (Shodan indexes millions of Telnet-exposed devices) │
-│                           ↓                                     │
-│ Exploit:    Telnet sends username + password in plain text.     │
-│             Attacker on same network runs Wireshark and reads   │
-│             credentials directly — no hacking required.         │
-│                           ↓                                     │
-│ Prevention: Log into router admin panel → Disable Telnet →     │
-│             Enable SSH instead. Takes 5 minutes.                │
-└─────────────────────────────────────────────────────────────────┘
+  Discovery:  Shodan indexes millions of Telnet-exposed devices.
+              Attackers scan port 23 with a single Nmap command.
+              ↓
+  Exploit:    Telnet sends your username + password in plain text.
+              Anyone on the same network can read it with Wireshark.
+              No hacking tools required.
+              ↓
+  Prevention: Router admin panel → Disable Telnet → Enable SSH.
+              Takes 5 minutes.
 
-PORT 445 — SMB (Windows File Sharing)
-┌─────────────────────────────────────────────────────────────────┐
-│ Discovery:  Attacker uses Nmap or Shodan to find SMB-exposed    │
-│             hosts. This is the same scan NetWatcher just did.   │
-│                           ↓                                     │
-│ Exploit:    EternalBlue (CVE-2017-0144) exploits SMBv1.         │
-│             WannaCry ransomware used this exact vector in 2017, │
-│             infecting 230,000 machines in 150 countries.        │
-│                           ↓                                     │
-│ Prevention: Windows Update → patch all updates.                 │
-│             Firewall → block port 445 from external access.     │
-└─────────────────────────────────────────────────────────────────┘
+PORT 445 — SMB
+  Discovery:  Same scan NetWatcher just ran finds it instantly.
+              ↓
+  Exploit:    EternalBlue (CVE-2017-0144) exploits SMBv1.
+              WannaCry ransomware used this in 2017 — 230,000 machines
+              in 150 countries infected in 4 days.
+              ↓
+  Prevention: Apply all Windows Updates. Block port 445 at firewall.
 
 PORT 6379 — REDIS
-┌─────────────────────────────────────────────────────────────────┐
-│ Discovery:  Attacker connects to port 6379. Default Redis       │
-│             install: no password, no auth, full access.         │
-│                           ↓                                     │
-│ Exploit:    redis-cli -h 192.168.1.x  → KEYS *  →              │
-│             dumps entire database. Or: CONFIG SET dir /root/.ssh │
-│             to write SSH keys for server access.                │
-│                           ↓                                     │
-│ Prevention: Add to redis.conf:  requirepass yourpassword        │
-│             Add:               bind 127.0.0.1                   │
-└─────────────────────────────────────────────────────────────────┘
+  Discovery:  Attacker connects to 6379. Default Redis: no password.
+              ↓
+  Exploit:    redis-cli -h 192.168.1.x → KEYS * → full database dump.
+              Or: CONFIG SET dir /root/.ssh to write SSH authorized_keys.
+              ↓
+  Prevention: redis.conf → requirepass yourpassword
+              redis.conf → bind 127.0.0.1
 ```
 
 ---
@@ -695,27 +609,26 @@ PORT 6379 — REDIS
 
 | Component | Choice | Why |
 |-----------|--------|-----|
-| **Scanner** | Nmap + python-nmap | Industry standard. XML output gives structured data for free. OS/version detection built in. |
-| **Language** | Python 3.8+ | Standard in security tooling. Rich ecosystem. No compilation step — clone and run. |
-| **CLI** | Typer + Rich | Typer: typed args + auto-help. Rich: professional tables, spinners, panels. Together = product-grade terminal UI. |
-| **Data model** | Dataclasses | Typed contract between every layer. Catch bugs at definition time. No external dependency. Swap to Pydantic trivially. |
-| **Rules** | Plain dict in `rules.py` | Rules are data, not code. Edit one file to add a vulnerability. Same pattern used in Snort IDS, Sigma rules, YARA. |
-| **AI runtime** | Ollama (local) | Zero cost. Private. No internet. One-command install. Manages model downloads and GPU layers automatically. |
-| **AI model** | Mistral 7B Q4_K_M | Best accuracy/VRAM tradeoff for RTX 3050 4GB. Instruction-tuned = follows JSON schema. Quantized = fits in 4GB. |
-| **Templates** | Jinja2 | Python-native. Separates HTML from logic completely. Same engine used by Flask/Django. |
-| **Charts** | Chart.js (CDN) | No build step. Renders in any browser. Report is self-contained single HTML file. |
-| **Database** | SQLite | Zero infrastructure. Single file. Python stdlib. Identical API to PostgreSQL — swap with one line change. |
-| **Storage format** | JSON in SQLite | Device data is nested (ports inside devices). JSON columns avoid complex joins while keeping SQLite simplicity. |
+| Scanner | Nmap + python-nmap | Industry standard. XML output = structured data for free. |
+| Language | Python 3.8+ | Standard in security tooling. Clone and run, no compilation. |
+| CLI | Typer + Rich | Typer: typed args + auto-help. Rich: tables, spinners, panels. |
+| Data model | Dataclasses | Typed contract between layers. No external dependency. |
+| Rules | Plain dict in `rules.py` | Rules = data. Engine = logic. Same pattern as Snort/YARA/Sigma. |
+| AI runtime | Ollama (local) | Zero cost. Private. Offline. GPU-managed model loading. |
+| AI model | Mistral 7B Q4_K_M | Best accuracy/VRAM for RTX 3050. Instruction-tuned for JSON. |
+| Templates | Jinja2 | Separates HTML from logic. Same engine as Flask/Django. |
+| Charts | Chart.js (CDN) | No build step. Single self-contained HTML file output. |
+| Database | SQLite | Zero infrastructure. Python stdlib. Swap to Postgres in one line. |
 
-### What Was Deliberately NOT Used
+### Deliberately NOT Used
 
 | Skipped | Why |
 |---------|-----|
-| Docker | Adds friction for a local tool. Nmap needs raw sockets (host networking) which complicates Docker anyway. |
-| FastAPI/Flask backend | No need for a server. The HTML report is static. A server would mean "always running" just to view history. |
-| React frontend | Zero-dependency single HTML file is more portable and recruiter-readable than a `npm install` step. |
-| OpenAI/Anthropic API | Privacy violation for a security tool. Network data should not leave the machine. |
-| Fine-tuning | Requires labeled training data + 16GB+ VRAM + weeks of work. RAG + prompt engineering achieves 90% of the benefit at 1% of the cost. |
+| Docker | Nmap needs raw sockets, complicates containers. Adds friction. |
+| FastAPI / Flask | No server needed. HTML report is static. |
+| React | `npm install` step kills portability. Single HTML = better. |
+| OpenAI API | Privacy violation for a security tool. |
+| Fine-tuning | Needs labeled data + 16GB VRAM. RAG + prompting = 90% benefit at 1% cost. |
 
 ---
 
@@ -726,26 +639,26 @@ NetWatcher/
 │
 ├── netwatcher/              # Core package
 │   ├── __init__.py          # Developer watermark + version
-│   ├── cli.py               # CLI entry point (Typer + Rich)
+│   ├── cli.py               # CLI (Typer + Rich)
 │   ├── scanner.py           # Nmap wrapper → typed Device objects
-│   ├── devices.py           # Device + Port dataclasses (typed contract)
+│   ├── devices.py           # Device + Port dataclasses
 │   └── config.py            # All settings in one place
 │
 ├── engine/                  # Analysis brain — pure logic, no I/O
 │   ├── risk_engine.py       # Scoring algorithm
-│   ├── rules.py             # Vulnerability rules ← EDIT THIS to add rules
+│   ├── rules.py             # Vulnerability rules ← EDIT THIS
 │   └── fingerprint.py       # MAC OUI + device type detection
 │
 ├── ai/                      # AI analysis layer
 │   ├── analyzer.py          # Orchestrates AI pipeline + fallback
 │   ├── ollama_client.py     # Ollama API client + model selection
-│   └── prompts.py           # All prompts ← EDIT THIS to tune AI output
+│   └── prompts.py           # All prompts ← EDIT THIS to tune AI
 │
-├── data/                    # Persistence
+├── data/
 │   ├── db.py                # SQLite handler (scan history)
 │   └── seed_data.json       # Mock CVE reference data
 │
-├── reports/                 # Output generation
+├── reports/
 │   ├── generator.py         # Jinja2 renderer
 │   ├── templates/
 │   │   └── report.html      # Dashboard template (Chart.js)
@@ -756,15 +669,16 @@ NetWatcher/
 │   └── helpers.py           # Shared utilities
 │
 ├── tests/
-│   └── test_risk_engine.py  # Unit tests (7/7 passing)
+│   └── test_risk_engine.py  # Unit tests
 │
 ├── scripts/
 │   ├── install.sh           # One-command Linux/Mac setup
 │   └── setup_ai.sh          # Ollama + model setup
 │
+├── Screenshot/              # Real scan screenshots (1–5)
+├── screenrecod/             # Tutorial.mp4 walkthrough
 ├── netwatcher.py            # Single entry point
 ├── requirements.txt         # 4 dependencies only
-├── README.md
 └── .gitignore
 ```
 
@@ -786,18 +700,18 @@ python tests/test_risk_engine.py
 7/7 tests passed
 ```
 
-Tests cover the risk engine in complete isolation — no Nmap, no SQLite, no file system, no Ollama. This is correct unit test design: test pure logic independently from I/O.
+Tests cover the risk engine in complete isolation — no Nmap, no SQLite, no Ollama. Correct unit test design: test pure logic independently from I/O.
 
 ---
 
 ## 🗺 Roadmap
 
-- [ ] **CVE Integration** — Pull live CVE data from NVD API, match against detected service versions
-- [ ] **Network Topology Map** — Visual graph of all devices and their connections
-- [ ] **Scheduled Scans** — Cron-based auto-scan with Slack/email diff alerts
-- [ ] **RAG Enhancement** — FAISS vector store of CVE database for more accurate AI context
-- [ ] **Authenticated Scanning** — SSH into Linux devices for deeper configuration checks
-- [ ] **PDF Export** — One-click PDF version of the HTML report
+- [ ] **CVE Integration** — NVD API, match detected versions against known CVEs
+- [ ] **Network Topology Map** — Visual graph of all devices and connections
+- [ ] **Scheduled Scans** — Cron-based auto-scan with diff alerting
+- [ ] **RAG Enhancement** — FAISS vector store of CVEs for grounded AI context
+- [ ] **Authenticated Scanning** — SSH into Linux devices for config audit
+- [ ] **PDF Export** — One-click PDF version of the report
 - [ ] **Comparison View** — Side-by-side diff of two scan sessions
 
 ---
@@ -805,9 +719,10 @@ Tests cover the risk engine in complete isolation — no Nmap, no SQLite, no fil
 ## ⚠️ Legal & Ethical Notice
 
 > **For authorized networks only.**
-> NetWatcher is built for ethical security auditing of networks you own or have explicit written permission to scan.
-> This tool performs passive reconnaissance only — no exploitation, no credential attacks, no data modification.
-> Unauthorized network scanning may violate computer crime laws (CFAA in the US, Computer Misuse Act in the UK, IT Act in India).
+>
+> NetWatcher performs passive reconnaissance only — no exploitation, no credential attacks, no data modification.
+> Only scan networks you own or have explicit written permission to scan.
+> Unauthorized network scanning may violate the CFAA (US), Computer Misuse Act (UK), or IT Act (India).
 > The attack simulations in the report are educational descriptions only — no actual attacks are performed.
 
 ---
@@ -818,7 +733,7 @@ Tests cover the risk engine in complete isolation — no Nmap, no SQLite, no fil
 
 **Built by Akshay**
 
-A security-minded developer focused on building tools that bridge the gap between complex technology and everyday usability.
+*Security-minded developer focused on building tools that bridge complex technology and everyday usability.*
 
 | | |
 |---|---|
@@ -829,11 +744,7 @@ A security-minded developer focused on building tools that bridge the gap betwee
 
 *If you are a recruiter or collaborator — feel free to connect.*
 
-</div>
-
 ---
-
-<div align="center">
 
 **NetWatcher v1.0** · MIT License · Offline-first · Zero external services · Free forever
 
